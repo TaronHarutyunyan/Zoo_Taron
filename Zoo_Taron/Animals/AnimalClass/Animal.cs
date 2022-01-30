@@ -36,13 +36,18 @@ namespace Zoo_Taron
             FoodType = ftype;
             HungerLevel = 2000;
             AliveOrDead = ALiveOrDeadStatus.ALive;
-            GettingHungry();
+            _timer = new Timer();
             SetAnimalType();
+            GettingHungry();
         }
-
+        public override string ToString()
+        {
+            return $"{Name} {Gender} {FoodType} {TypeOfThis}";
+        }
         public void SetInCage(Cage c)
         {
             if (TypeOfThis == c.AnimalType) Cage = c;
+            Cage.PutAnimalInCage(this);
             Cage.FoodAddedInPlate += Eat;
         }
         private void GettingHungry()
@@ -86,7 +91,7 @@ namespace Zoo_Taron
 
         public void Eat()
         {
-            Food lfood = Cage.FoodPlate.Foods[Cage.FoodPlate.Foods.Count - 1];
+            Food lfood = Cage.FoodPlate.Foods[^1];
             Cage.FoodPlate.Foods.Remove(lfood);
             HungerLevel += lfood.Calories;
             

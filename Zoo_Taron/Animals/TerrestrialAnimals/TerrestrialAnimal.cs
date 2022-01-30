@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Zoo_Taron
 {
-    class TerrestrialAnimal : Animal
+    class TerrestrialAnimal : Animal,IWalkable
     {
+        public TerrestrialAnimal(string name, Gender gender, FoodType ftype) : base(name, gender, ftype)
+        {
+
+        }
+
+        public void Walk()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

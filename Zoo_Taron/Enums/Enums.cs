@@ -6,16 +6,14 @@
     };
     public enum Gender
     {
-        Male = 1,
-        Female
+        Male = 1, Female
     };
     public enum ALiveOrDeadStatus
     {
-        ALive, Dead
+        ALive =1, Dead
     };
     public enum FoodType
     {
-        Meat = 1,
-        Grass
+        Meat = 1, Grass
     };
 }

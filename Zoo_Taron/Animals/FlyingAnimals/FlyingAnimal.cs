@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zoo_Taron
 {
-    class FlyingAnimal:Animal,IFlyiable
+    class FlyingAnimal:Animal,IFlyable
     {
         public FlyingAnimal(string name, Gender gender, FoodType ftype) : base(name, gender, ftype)
         {

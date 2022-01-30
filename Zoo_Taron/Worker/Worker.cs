@@ -7,16 +7,14 @@ namespace Zoo_Taron
         public Cage WorkCage { get; set; }
         public Worker(Cage c)
         {
-            WorkCage = c;            
-            SubscribeToAnimalsInCage();
+            WorkCage = c;
+            WorkCage.HasWorker = true;
+            WorkCage.AnimalAddedinCage+=SubscribeToAnimalsInCage;
         }
 
         private void SubscribeToAnimalsInCage()
         {
-            foreach (var animal in WorkCage.AnimalsInCage)
-            {
-                animal.MakingSound += Work;
-            }
+            WorkCage.AnimalsInCage[^1].MakingSound += Work;
         }
 
         private void Work()
