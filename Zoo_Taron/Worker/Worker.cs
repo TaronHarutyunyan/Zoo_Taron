@@ -19,7 +19,7 @@ namespace Zoo_Taron
 
         private void Work()
         {
-            WorkCage.AddFood(new Food(WorkCage.AnimalsInCage[0].FoodType));
+            WorkCage.AddFood(new Food(WorkCage.AnimalsInCage[0].FoodType));            
         }
     }
 }

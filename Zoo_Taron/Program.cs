@@ -7,6 +7,7 @@ namespace Zoo_Taron
     {
         public static List<Cage> Cages = new();
         public static List<Animal> Animals = new();
+        public static List<Worker> Workers = new();
         static void Main()
         {
             while (true)
@@ -18,6 +19,9 @@ namespace Zoo_Taron
                 catch (Exception)
                 {
                     //
+                }
+                finally
+                {
                 }
             }
         }
@@ -58,8 +62,16 @@ namespace Zoo_Taron
         {
             Console.Clear();
             Console.WriteLine("_____________ZOO___________");
-            //
-            
+            for (int i = 0; i < Cages.Count; i++)
+            {
+                Console.WriteLine(Cages[i] + " Has Worker - " + Cages[i].HasWorker);                
+                for (int j = 0; j < Cages[i].AnimalsInCage.Count; j++)
+                {
+                    Console.WriteLine(Cages[i].AnimalsInCage[j]);
+                }
+            }
+            Console.WriteLine("Press Any Key To Continue...");
+            Console.ReadLine();
         }
 
         private static void PlaceAnimalInCage()
@@ -92,7 +104,7 @@ namespace Zoo_Taron
             //mejy metodner kan grancac urish eventin
             //cragrum vochmi tex es workerin es chem dimelu inqy uxxaki stexcvela u ashxatuma;            
             //GC-n jnjelua te che u ete jnjelua miangamic kjnji te inchvor jamanak heto?
-            new Worker(SelectCageWithNoWorker());
+            Workers.Add(new Worker(SelectCageWithNoWorker()));
         }
 
         private static void CreateAnimal()

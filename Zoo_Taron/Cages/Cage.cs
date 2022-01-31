@@ -13,6 +13,7 @@ namespace Zoo_Taron
         public bool HasWorker { get; set; }
         public Cage(AnimalTypes type)
         {
+            AnimalsInCage = new();
             AnimalType = type;
             FoodPlate = new Plate();
             HasWorker = false;
