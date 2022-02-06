@@ -16,13 +16,12 @@ namespace Zoo_Taron
                 {
                     Start();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    //
+                    Log log = Log.GetInstance();
+                    log.Write(e.Message + "/" + e.StackTrace);
                 }
-                finally
-                {
-                }
+
             }
         }
         static void Start()
@@ -35,7 +34,7 @@ namespace Zoo_Taron
             Console.WriteLine("4) Place Animal In Cage");
             Console.WriteLine("5) Show Zoo Info");
             Console.WriteLine("6) Exit");            
-            switch (NumberInput(1,3))
+            switch (NumberInput(1,6))
             {
                 case 1:
                     CreateCage();
@@ -72,6 +71,7 @@ namespace Zoo_Taron
             }
             Console.WriteLine("Press Any Key To Continue...");
             Console.ReadLine();
+            Log.GetInstance().Write("Info Was Shown In Console");
         }
 
         private static void PlaceAnimalInCage()
@@ -93,7 +93,9 @@ namespace Zoo_Taron
                 l++;
             }
             Cage lCage = Cages[NumberInput(l, Cages.Count) - 1];
-            lAnimal.SetInCage(lCage);            
+            lAnimal.SetInCage(lCage);
+            Log log  = Log.GetInstance();
+            log.Write("Animal Set In Cage");
         }
 
         private static void CreateWorker()
@@ -105,6 +107,7 @@ namespace Zoo_Taron
             //cragrum vochmi tex es workerin es chem dimelu inqy uxxaki stexcvela u ashxatuma;            
             //GC-n jnjelua te che u ete jnjelua miangamic kjnji te inchvor jamanak heto?
             Workers.Add(new Worker(SelectCageWithNoWorker()));
+            Log.GetInstance().Write("Worker Created");
         }
 
         private static void CreateAnimal()
@@ -142,12 +145,14 @@ namespace Zoo_Taron
                     Animals.Add(new TerrestrialAnimal(lName, lGender, lFoodType));
                     break;
             }
+            Log.GetInstance().Write("Animal Created And Added To List");
         }
         
 
         private static int NumberInput(int minNumber, int maxNumber)
         {
-            if ((!int.TryParse(Console.ReadLine(), out int lInput)) && (lInput < minNumber && lInput > maxNumber)) throw new Exception();
+            if (!int.TryParse(Console.ReadLine(), out int lInput)) throw new Exception("Input Cant Convert To Int");
+            if(lInput < minNumber || lInput > maxNumber) throw new Exception("Invalid Input Number");
             return lInput;
         }
         private static void CreateCage()
@@ -160,6 +165,8 @@ namespace Zoo_Taron
             Console.WriteLine("         3) Flying");
             Console.WriteLine("         4) Terrestrial   Animal");
             Cages.Add(new Cage((AnimalTypes)NumberInput(1, 4)));
+            Log log = Log.GetInstance();
+            log.Write($"Cage Created");
         }
 
         private static Cage SelectCageWithNoWorker()

@@ -1,21 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
-namespace Zoo_Taron.FileManager
+namespace Zoo_Taron
 {
     class Log
     {
         private static Log _instance;
-        private Log()
-        {
+        private static DateTime Date;
+        private static string FileAdress = @$"./Log{Date.ToString("dd")}.txt";
 
+        public Log()
+        {
+            Date = DateTime.Now;
         }
         public void Write(string s)
         {
+            CheckOrChangeDate();
+            using StreamWriter writer = new(new FileStream(FileAdress, FileMode.Append, FileAccess.Write));
+            writer.WriteLine(s + " " + DateTime.Now.ToString());
+        }
 
+        private void CheckOrChangeDate()
+        {
+            if (Date.Day != DateTime.Now.Day) Date = DateTime.Now;
         }
         public static Log GetInstance()
         {
