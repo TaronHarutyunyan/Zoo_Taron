@@ -102,10 +102,6 @@ namespace Zoo_Taron
         {
             Console.Clear();
             Console.WriteLine("__________CREATE WORKER_________");
-            //????Uxxaki Petqa Vor meji metodnery ashxaten
-            //mejy metodner kan grancac urish eventin
-            //cragrum vochmi tex es workerin es chem dimelu inqy uxxaki stexcvela u ashxatuma;            
-            //GC-n jnjelua te che u ete jnjelua miangamic kjnji te inchvor jamanak heto?
             Workers.Add(new Worker(SelectCageWithNoWorker()));
             Log.GetInstance().Write("Worker Created");
         }
@@ -179,7 +175,6 @@ namespace Zoo_Taron
                 if (!Cages[i].HasWorker)
                 {
                     Console.WriteLine($"{l} {Cages[i]}");
-                    //Console.WriteLine($"Animals Count - {Cages[i].AnimalsInCage.Count}");
                     larr[l] = i;
                     l++;
                 }
